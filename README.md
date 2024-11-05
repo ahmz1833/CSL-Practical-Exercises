@@ -10,7 +10,7 @@
 
 ## Description
 
-This repository contains the practical assignments for the course **Computer Architecture and Assembly Language**. The projects are completed collaboratively by our two-person team.
+This repository contains the practical assignments for the course **Computer Architecture and Assembly Language**. Code are MIPS32/MARS Assembly.
 
 ## Repository Structure
 ```
