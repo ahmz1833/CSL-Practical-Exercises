@@ -1,10 +1,14 @@
-	.data
-coef:		.float	4
-newline:	.asciiz "\n"
-root1:		.asciiz "Root1: "
-root2:		.asciiz "Root2: "
-	.text
-	.global main
+.data
+coef:
+	.float	4
+newline:
+	.asciiz "\n"
+root1:
+	.asciiz "Root1: "
+root2:
+	.asciiz "Root2: "
+.text
+.globl main
 main:
 
 	li $v0, 6
