@@ -1,25 +1,27 @@
-.data
-a:  .word   0, 0
-.text
+# Assignment 3 - Practical Question 1; 402106434, 402106456
 
-.macro  read_int, $dest
+.macro  read_int($dest)
 	li      $v0,    5              # syscall 5: read_int
 	syscall
 	move    $dest,  $v0            # read into $zero
 .end_macro
 
-.macro  read_char, $dest
+.macro  read_char($dest)
 	li      $v0,    12             # syscall 12: read_character
 	syscall
 	move    $dest,  $v0            # read into $zero
 .end_macro
 
-.macro  print_int, $src
+.macro  print_int($src)
 	li      $v0,    1              # syscall 1: print_int
 	move    $a0,    $src
 	syscall                        # print $src
 .end_macro
 
+.data
+a:  .word   0, 0
+.text
+    .globl  main
 main:
 	read_int($s0)
 	read_char($t0)
