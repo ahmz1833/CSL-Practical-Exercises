@@ -1,3 +1,5 @@
+# Assignment 4 - Practical Question 3; 402106434, 402106456
+
 .macro print_char %reg
 	li      $v0,        11
 	move    $a0,        %reg

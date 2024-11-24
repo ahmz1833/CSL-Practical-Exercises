@@ -1,3 +1,5 @@
+# Assignment 4 - Practical Question 4; 402106434, 402106456
+
 .data
 input:          .word   -1
 shift_amount:   .word   3
