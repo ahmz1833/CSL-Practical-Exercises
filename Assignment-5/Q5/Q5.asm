@@ -50,6 +50,7 @@ main:
 	la $s1, B
 	# allocate memory
 	mul $a0, $t0, $t2
+	sll $a0, $a0, 2
 	li $v0, 9
 	syscall
 	move $s2, $v0	# $s2 = Address of allocated memory
