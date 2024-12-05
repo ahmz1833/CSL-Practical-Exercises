@@ -1,3 +1,4 @@
+# Assignment 5 - Practical Question 5; 402106434, 402106456
 .data
 N: .word 3               
 M: .word 2               
