@@ -38,6 +38,7 @@ coef:
 
 .macro	print_polynomial,	$addr,	$deg
 	lw	$t0,	0($addr)
+	move	$s7,	$deg	# $s7 = degree of entire polynomial
 cal:
 	li	$t1,	' '
 	print_char($t1)
@@ -51,8 +52,10 @@ negative:
 	print_char($t2)
 	j	x_print
 positive:
+	beq	$deg,	$s7,	number
 	li	$t2,	'+'
 	print_char($t2)
+number:
 	li	$t1,	1
 	beq	$t0,	$t1,	x_print
 	print_int($t0)

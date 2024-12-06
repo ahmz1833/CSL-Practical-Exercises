@@ -1,0 +1,2 @@
+This input represents ( x^3 -x^2 +5)( -x^2 +3) Output:
+ -x^5 +x^4 +3x^3 -8x^2 +15
