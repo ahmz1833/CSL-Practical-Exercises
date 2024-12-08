@@ -1,3 +1,5 @@
+# Assignment 5 - Practical Question 2; 402106434, 402106456
+
 .text
 main:
     # Read (a) into $a0
