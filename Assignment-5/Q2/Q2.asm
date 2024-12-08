@@ -27,8 +27,7 @@ power:
     sw     $ra,    0($sp)
     sw     $s0,    4($sp)
     sw     $s1,    8($sp)
-    # if a1 == 0, return 1
-    beq    $a1,    $0,     _power_base
+    beq    $a1,    $0,     _power_base  # if a1 == 0, return 1
     # we should return power(a0, a1/2)^2 * ((a1 % 2) ? a0 : 1)
     and    $s0,    $a1,    1            # s0 = a1 % 2  
     srl    $s1,    $a1,    1            # s1 = a1 / 2

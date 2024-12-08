@@ -1,3 +1,5 @@
+# Assignment 5 - Practical Question 1; 402106434, 402106456
+
 .data
 command:     .space  4       # variable to store the command
 stack_ptr:   .word   0       # pointer to the top of the stack
