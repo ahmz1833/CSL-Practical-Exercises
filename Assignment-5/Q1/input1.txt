@@ -1,0 +1,13 @@
+psh
+4
+psh
+10
+psh
+0
+psh
+-7
+sub
+add
+mul
+pop
+ext
