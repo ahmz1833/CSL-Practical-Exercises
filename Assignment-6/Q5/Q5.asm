@@ -1,4 +1,4 @@
-#Assignment-6 Q3 - 402106434 - 402106456
+#Assignment-6 Q5 - 402106434 - 402106456
 .data
 palindrome:	.asciiz	" is a palindrome\n"
 not_pal:	.asciiz	" is not a palindrome\n"
