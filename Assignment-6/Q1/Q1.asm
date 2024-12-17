@@ -26,6 +26,7 @@
 .macro alloc %n, %addr
     li      $v0,    9
     move    $a0,    %n
+    addi    $a0,    $a0,    1            # For \0 in destination string
     syscall
     move    %addr,  $v0
 .end_macro
