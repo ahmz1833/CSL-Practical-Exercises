@@ -1,0 +1,2 @@
+Number of zeros: 5
+Number of ones: 8
