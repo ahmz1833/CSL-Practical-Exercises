@@ -1,2 +1,6 @@
 **/for_send/
 **/tests/
+*.o
+*.out
+**/.vscode/
+**/.idea
