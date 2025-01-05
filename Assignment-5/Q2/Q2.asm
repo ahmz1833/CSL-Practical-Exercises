@@ -3,14 +3,14 @@
 .text
 main:
     # Read (a) into $a0
-	li      $v0,    5
-	syscall
-	move    $a0,    $v0
+    li      $v0,    5
+    syscall
+    move    $a0,    $v0
 
     # Read (b) into $a1
-	li      $v0,    5
-	syscall
-	move    $a1,    $v0
+    li      $v0,    5
+    syscall
+    move    $a1,    $v0
 
     jal power            # Call the power function
 

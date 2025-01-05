@@ -10,7 +10,14 @@
 
 ## Description
 
-This repository contains the practical assignments for the course **Computer Architecture and Assembly Language**. Code are MIPS32/MARS Assembly.
+This repository contains the practical assignments for the course **Computer Architecture and Assembly Language**.
+
+- Assignment 3: MIPS32 Assembly Basics 
+- Assignment 4: MIPS32 Assembly Basics 
+- Assignment 5: MIPS32 Assembly Functions
+- Assignment 6: MIPS32 Assembly Recursive Functions
+- Assignment 7: Intel x86_64
+- Assignment 8: IBM S390x
 
 ## Repository Structure
 ```
@@ -22,10 +29,9 @@ This repository contains the practical assignments for the course **Computer Arc
 │   │   ├── Assembly Code
 │   │   └── Sample Input/Output
 │   ├── ...
-│   ├── Q[m]
-│   │   ├── Assembly Code
-│   │   └── Sample Input/Output
-│   └── Report if needed
+│   └── Q[m]
+│       ├── Assembly Code
+│       └── Sample Input/Output
 ├── Assignment-[n+1]
 │   ├── Q1
 │   │   ├── ...

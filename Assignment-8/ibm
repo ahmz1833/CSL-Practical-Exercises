@@ -1,0 +1,47 @@
+#!/bin/sh
+set -e
+
+# Detect the Linux distribution
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    DISTRO=$ID
+else
+    echo "Cannot determine the Linux distribution. Exiting."
+    exit 1
+fi
+
+# Set assembler and compiler based on the distribution
+if [ "$DISTRO" = "arch" ]; then
+    AS="s390x-linux-as"
+else
+    AS="s390x-linux-gnu-as"fi
+fi
+
+in=$1
+base_name=$(basename "$in" .${in##*.})
+
+$AS -o "$base_name.o" "$in"
+if [ $? -ne 0 ]; then
+    echo "Assembler assembly failed."
+    exit 2
+fi
+
+if [ "$DISTRO" = "arch" ]; then
+    s390x-linux-gcc "$base_name.o" -o "$in.out" -no-pie -fno-pie -lm -z noexecstack
+else
+    s390x-linux-gnu-gcc -z noexecstack -m64 -pipe -static -no-pie -std=c17 -lm  "$base_name.o" -o "$in.out"
+fi
+
+if [ $? -ne 0 ]; then
+    echo "GCC linking failed."
+    rm -f "$base_name.o"
+    exit 3
+fi
+
+rm -f "$base_name.o"
+
+if [ "$DISTRO" = "arch" ]; then
+    QEMU_LD_PREFIX=/opt/s390x-z13-glibc-bleeding-edge/s390x-buildroot-linux-gnu/sysroot qemu-s390x "$in.out"
+else
+    qemu-s390x "$in.out"
+fi

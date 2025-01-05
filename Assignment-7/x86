@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+in=$1
+base_name=$(basename "$in" .${in##*.})
+
+nasm -felf64 "$in" -o "$base_name.o"
+if [ $? -ne 0 ]; then
+    echo "NASM assembly failed."
+    exit 2
+fi
+
+gcc -z noexecstack -m64 -no-pie -static -pipe -std=c17 "$base_name.o" -o "$in.out"
+if [ $? -ne 0 ]; then
+    echo "GCC linking failed."
+    rm -f "$base_name.o"
+    exit 3
+fi
+
+rm -f "$base_name.o"
+
+"./$in.out"
+

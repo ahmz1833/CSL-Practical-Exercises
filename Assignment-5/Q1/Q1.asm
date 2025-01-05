@@ -76,7 +76,7 @@ _mul:
     jal  push               # call push (push $a0)
     j    exec_command_end
 _ext:
-    li	 $v0, 10            # syscall 10: exit
+    li   $v0, 10            # syscall 10: exit
     syscall
 exec_command_end:
     lw   $ra, 4($sp)        # restore the return address
