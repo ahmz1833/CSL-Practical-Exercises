@@ -1,14 +1,22 @@
 # Assignment 8 - Practical Question 4; 402106434, 402106456
 
 ####################### Macros #######################
-.macro enter size
-	stmg	%r6, %r15, 48(%r15)
-	lay	%r15, -(160+\size)(%r15)
+.macro call func
+    lay   %r15, -160(%r15)              # Allocate stack frame for calling function
+    brasl %r14, \func                   # Call the function
+    lay   %r15, 160(%r15)               # Disallocate stack frame of called function
 .endm
 
-.macro leave size
-	lay	%r15, (160+\size)(%r15)
-	lmg	%r6, %r15, 48(%r15)
+.macro ret
+    br %r14                             # Return to the caller
+.endm
+
+.macro enter 
+    stmg %r6, %r15, 48(%r15)            # Save r6 to r15 in stack
+.endm
+
+.macro leave
+    lmg %r6, %r15, 48(%r15)             # Restore r6 - r15
 .endm
 
 .macro read_long	# Input is in r2
@@ -20,20 +28,12 @@
 	leave	8
 .endm
 
-.macro ret
-	br	%r14
-.endm
-
-.macro call func
-	brasl	%r14, \func
-.endm
-
 ####################### Main #######################
 
 .text
 .global	main
 main:
-    enter   0
+    enter
     read_long
     lgr     %r7,    %r2
     read_long
@@ -83,14 +83,14 @@ done:
 
 
 
-    leave   0
+    leave
     ret
 
 
 ####################### Function Definitions #######################
 ######## count_bits ###########
 count_bits:
-    enter   0
+    enter
     xgr     %r9, %r9            # r9 = 0
     lgr     %r11, %r2
 count_bits_loop:
@@ -102,7 +102,7 @@ count_back:
     jnz     count_bits_loop
 
     lgr     %r2,    %r9
-    leave   0
+    leave
     ret
 
 count_increment:
@@ -112,7 +112,7 @@ count_increment:
 
 ######### Multiply ###########
 multiply:
-    enter   0
+    enter
     larl    %r11,   less_1     
     lg      %r7,    0(%r11)     # r7 = multiplier (number with fewer 1s)
     larl    %r11,   more_1
@@ -131,7 +131,7 @@ skip_add:
     jnz     multiply_loop
     
     lgr     %r2,    %r9
-    leave   0
+    leave
     ret
 
 

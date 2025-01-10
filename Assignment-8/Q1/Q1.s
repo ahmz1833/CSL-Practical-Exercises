@@ -1,14 +1,22 @@
 # Assignment 8 - Practical Question 1; 402106434, 402106456
 
 ####################### Macros #######################
-.macro enter size
-	stmg	%r6, %r15, 48(%r15)
-	lay	%r15, -(160+\size)(%r15)
+.macro call func
+    lay   %r15, -160(%r15)              # Allocate stack frame for calling function
+    brasl %r14, \func                   # Call the function
+    lay   %r15, 160(%r15)               # Disallocate stack frame of called function
 .endm
 
-.macro leave size
-	lay	%r15, (160+\size)(%r15)
-	lmg	%r6, %r15, 48(%r15)
+.macro ret
+    br %r14                             # Return to the caller
+.endm
+
+.macro enter 
+    stmg %r6, %r15, 48(%r15)            # Save r6 to r15 in stack
+.endm
+
+.macro leave
+    lmg %r6, %r15, 48(%r15)             # Restore r6 - r15
 .endm
 
 .macro read_long	# Input is in r2
@@ -18,14 +26,6 @@
 	call	scanf
 	lg	%r2, 160(%r15)
 	leave	8
-.endm
-
-.macro ret
-	br	%r14
-.endm
-
-.macro call func
-	brasl	%r14, \func
 .endm
 
 ####################### Main #######################

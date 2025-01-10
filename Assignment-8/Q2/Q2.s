@@ -1,36 +1,35 @@
-
 # Assignment 8 - Practical Question 2; 402106434, 402106456
-.macro enter size
-	stmg	%r6, %r15, 48(%r15)
-	lay	%r15, -(160+\size)(%r15)
-.endm
-
-.macro leave size
-	lay	%r15, (160+\size)(%r15)
-	lmg	%r6, %r15, 48(%r15)
-.endm
-
-.macro print_long			# Output is in r3
-	enter	0
-	larl	%r2, print_num
-	call	printf
-	leave	0
-.endm
-
-.macro read_string label	# Input is stored in the label
-	enter	0
-	larl	%r2, scan_str
-	larl	%r3, \label
-	call	scanf
-	leave	0
+.macro call func
+    lay   %r15, -160(%r15)              # Allocate stack frame for calling function
+    brasl %r14, \func                   # Call the function
+    lay   %r15, 160(%r15)               # Disallocate stack frame of called function
 .endm
 
 .macro ret
-	br	%r14
+    br %r14                             # Return to the caller
 .endm
 
-.macro call func
-	brasl	%r14, \func
+.macro enter 
+    stmg %r6, %r15, 48(%r15)            # Save r6 to r15 in stack
+.endm
+
+.macro leave
+    lmg %r6, %r15, 48(%r15)             # Restore r6 - r15
+.endm
+
+.macro print_long			# Output is in r3
+	enter
+	larl	%r2, print_num
+	call	printf
+	leave
+.endm
+
+.macro read_string label	# Input is stored in the label
+	enter
+	larl	%r2, scan_str
+	larl	%r3, \label
+	call	scanf
+	leave
 .endm
 
 
@@ -38,7 +37,7 @@
 .text
 .global	main
 main:
-	enter 0
+	enter
 	read_string str
 
 	larl	%r8, str
@@ -90,7 +89,7 @@ loop_end:
 	print_long
 
 
-	leave 0
+	leave
 	ret
 
 	
@@ -114,4 +113,3 @@ zero_char:		.byte	'\0'
 .align	8
 ten_const:		.quad	10
 .align	8
-align	8
