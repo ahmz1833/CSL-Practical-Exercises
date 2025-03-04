@@ -1,4 +1,4 @@
-# Computer Architecture and Assembly Language - Practical Assignments
+# Computer Structure and Assembly Language - Practical Assignments
 
 **Term:** Fall 2024  
 **Instructor:** Professor Assadi
@@ -10,7 +10,7 @@
 
 ## Description
 
-This repository contains the practical assignments for the course **Computer Architecture and Assembly Language**.
+This repository contains the practical assignments for the course **Computer Structure and Assembly Language**.
 
 - Assignment 3: MIPS32 Assembly Basics 
 - Assignment 4: MIPS32 Assembly Basics 
